@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.sdt">
+	<select id="getFlightMASTERInfoOfDEG" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT FLTDATE , FLTNO , DEPSTN , ARRSTN , HLOCEN FROM COMINST.TBASRMSTFLIGHT  AA
+		WHERE SUBSTR(FLTDATE ,1 , 6 ) = #{FltDate}
+		AND RADIATION IS NULL AND JOBSTATUS ='W' 
+		AND HLOCEN IS NOT NULL
+		<![CDATA[
+		 AND (SELECT COUNT(*) FROM COMINST.TBASRFLTDESC BB WHERE BB.FLTDATE=AA.FLTDATE AND BB.FLTNO=AA.FLTNO) > 2 
+		 ]]>
+	</select>
+
+	<select id="getUserID" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from users_info where user_id = #{user_id}
+	</select>
+	
+	<update id="updateExposedRadiation" parameterType="java.util.HashMap" >
+		UPDATE COMINST.TBASRMSTFLIGHT 
+		SET RADIATION = #{Radiation, jdbcType=DECIMAL}      , JOBSTATUS ='G'
+		WHERE FLTDATE= #{FlightDate}
+		AND FLTNO = #{FltNo}
+		
+	</update>
+	
+	<update id="updateJobStatus" parameterType="java.util.HashMap" >
+		UPDATE COMINST.TBASRHISJOB 
+		SET JOBSTATUS = #{JOBSTATUS}
+		WHERE RegDate = #{RegDate}
+		AND JOBSTATUS ='P'
+	</update>
+	
+	<insert id="insertJobStatus" parameterType="java.util.HashMap" >
+		INSERT INTO COMINST.TBASRHISJOB
+		(REGDATE , JOBID , JOBSTATUS , USERCODE)
+		VALUES(#{RegDate} , #{JOBID} , #{JOBSTATUS} , #{UserId})
+	</insert>
+	
+	<select id="selectJobId" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT JOBID  FROM COMINST.TBASRHISJOB 
+		WHERE REGDATE = #{REGDATE}
+		ORDER BY JOBID DESC 
+	</select>
+	
+	<select id="getHLOCEN" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT HLOCEN FROM COMINST.TBASRMSTFLIGHT  
+		WHERE SUBSTR(FLTDATE ,1 , 6 ) = #{FlightDate}
+		AND (HLOCEN IS NULL OR HLOCEN = 0)
+	</select>
+	
+	<select id="checkJobStatus" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT JOBID FROM COMINST.TBASRHISJOB  
+		WHERE REGDATE =#{RegDate}
+		AND JOBSTATUS ='P'
+	</select>
+</mapper>
