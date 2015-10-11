@@ -97,7 +97,22 @@
                       <div class="panel-body">
 	                      <form class="form-inline" role="form" id="scriptForm" name="scriptForm">
 	                      	<textarea  class="form-control" id='scriptTextArea' name='scriptTextArea' rows="20" cols="100">
-	                      		console.log('test node execute');
+var mraa = require('mraa'); //require mraa
+console.log('MRAA Version: ' + mraa.getVersion()); 
+
+//var myOnboardLed = new mraa.Gpio(3, false, true); 
+var myOnboardLed = new mraa.Gpio(13); 
+myOnboardLed.dir(mraa.DIR_OUT); 
+var ledState = true; //Boolean to hold the state of Led
+myOnboardLed.write(0);
+//periodicActivity(); //call the periodicActivity function
+
+function periodicActivity()
+{
+  myOnboardLed.write(ledState?1:0); 
+  ledState = !ledState; //invert the ledState
+  setTimeout(periodicActivity,300); 
+}
 	                      	</textarea>
 	                      </form>
                       </div>

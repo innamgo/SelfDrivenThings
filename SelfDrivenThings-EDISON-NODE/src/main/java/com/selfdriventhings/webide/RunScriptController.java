@@ -36,11 +36,11 @@ public class RunScriptController {
 		try{
 			fileMake("temp.js", psText);
 			List<String> cmdList = new ArrayList<String>();
-			cmdList.add("C:\\Program Files\\nodejs\\node.exe");		
-			cmdList.add("E:\\stsworkspace\\SelfDrivenThings-EDISON-NODE\\temp.js");		
+			cmdList.add("node");		
+			cmdList.add("/home/root/temp.js");		
 			
 			ProcessBuilder pb=new ProcessBuilder(cmdList);
-			pb.directory(new File("C:\\Program Files\\nodejs\\"));
+			pb.directory(new File("/home/root/"));
 			Process pr = pb.start();
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(pr.getInputStream()));
@@ -67,7 +67,7 @@ public class RunScriptController {
 	 public void fileMake(String makeFileName,String psText) {
 		 try
 	        {
-	            FileWriter fw = new FileWriter("E:\\stsworkspace\\SelfDrivenThings-EDISON-NODE\\"+makeFileName); // 절대주소 경로 가능
+	            FileWriter fw = new FileWriter("/home/root/"+makeFileName); // 절대주소 경로 가능
 	            BufferedWriter bw = new BufferedWriter(fw);
 	            bw.write(psText);
 	            bw.newLine(); // 줄바꿈
@@ -76,7 +76,6 @@ public class RunScriptController {
 	        catch (IOException e)
 	        {
 	            System.err.println(e); // 에러가 있다면 메시지 출력
-	            System.exit(1);
 	        }
 	 }
 	 public static void main(String args[])

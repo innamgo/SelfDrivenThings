@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<title>Self Driven Things Search Engine</title>
 		<link rel="shortcut icon" type="image/x-icon" href="/resources/favicon.ico" />
-		<meta name="generator" content="Bootply" />
+		<meta name="generator" content="Airwolf" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
@@ -43,7 +43,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse1">
           <form class="navbar-form pull-left">
-              <div class="input-group" style="max-width:470px;">
+              <div class="input-group" style="max-width:670px;align:center">
                 <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                 <div class="input-group-btn">
                   <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -106,17 +106,26 @@
    <div class="row">
    <div class="col-md-4 col-sm-6">
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>부트스르배</h4></div>
+          <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>AirWolf Team</h4></div>
    			<div class="panel-body">
               <div class="list-group">
+              	현재 BETA 테스트입니다. 
               </div>
             </div>
    		</div>
         <div class="well"> 
              <form class="form-horizontal" role="form">
-              <h4>What's New</h4>
-               <div class="form-group" style="padding:14px;">
-                <textarea class="form-control" placeholder="Update your status"></textarea>
+              <h4>Intel Edison LED On/Off script</h4>
+               <div class="form-group" style="padding:7px;">
+                <textarea class="form-control" placeholder="Update your status">
+var mraa = require('mraa'); //require mraa
+console.log('MRAA Version: ' + mraa.getVersion()); 
+var myOnboardLed = new mraa.Gpio(13); 
+myOnboardLed.dir(mraa.DIR_OUT); 
+var ledState = true; //Boolean to hold the state of Led
+myOnboardLed.write(0);
+     	
+                </textarea>
               </div>
               <button class="btn btn-success pull-right" type="button">Post</button><ul class="list-inline"><li><a href="#"><i class="glyphicon glyphicon-align-left"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-center"></i></a></li><li><a href="#"><i class="glyphicon glyphicon-align-right"></i></a></li></ul>
             </form>
@@ -125,11 +134,11 @@
         <div class="panel panel-default">
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
    			<div class="panel-body">
-              <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
+              <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Free @Airwolf</a>
               <div class="clearfix"></div>
-              There a load of new free Bootstrap 3 ready templates at Bootply. All of these templates are free and don't require extensive customization to the Bootstrap baseline.
+              There a load of new free Bootstrap 3 ready templates at Airwolf. All of these templates are free and don't require extensive customization to the Bootstrap baseline.
               <hr>
-              <ul class="list-unstyled"><li><a href="http://www.bootply.com/templates">Dashboard</a></li><li><a href="http://www.bootply.com/templates">Darkside</a></li><li><a href="http://www.bootply.com/templates">Greenfield</a></li></ul>
+              <ul class="list-unstyled"><li><a href="http://www.Airwolf.com/templates">Dashboard</a></li><li><a href="http://www.Airwolf.com/templates">Darkside</a></li><li><a href="http://www.Airwolf.com/templates">Greenfield</a></li></ul>
             </div>
          </div> 
 
@@ -147,12 +156,45 @@
           </div>
 
       	 <div class="panel panel-default">
-           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
+           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bluetooth &amp; Sample Code </h4></div>
    			<div class="panel-body">
-              <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
+              <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">The Bluetooth iBeacon</a></p>
               <div class="clearfix"></div>
               <hr>
-              Design, build, test, and prototype using Bootstrap in real-time from your Web browser. Bootply combines the power of hand-coded HTML, CSS and JavaScript with the benefits of responsive design using Bootstrap. Find and showcase Bootstrap-ready snippets in the 100% free Bootply.com code repository.
+              <textarea rows="10" cols="45" >
+var bleno = require('bleno');
+
+console.log('iBeacon NodeJS template');
+
+//iBeacon info
+var uuid  = 'e2c56db5dffb48d2b060d0f5a71096e0';
+var major = 0;
+var minor = 0;
+var measuredPower = -59;
+
+bleno.on('stateChange', function(state) {
+    console.log('on -> stateChange: ' + state);
+
+    if (state === 'poweredOn') {
+        bleno.startAdvertisingIBeacon(
+            uuid, major, minor, measuredPower);
+    }
+    else if (state === 'unsupported') {
+        console.log("Please review the README.md for steps to enable the required configurations.");
+    }
+    else {
+        bleno.stopAdvertising();
+    }
+});
+
+bleno.on('advertisingStart', function() {
+    console.log('on -> advertisingStart');
+});
+
+bleno.on('advertisingStop', function() {
+    console.log('on -> advertisingStop');
+});
+				</textarea>
             </div>
          </div>
       
@@ -173,7 +215,7 @@
            <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
    			<div class="panel-body">
               <ul class="list-group">
-              <li class="list-group-item">Bootply Playground</li>
+              <li class="list-group-item">Airwolf Playground</li>
               <li class="list-group-item">Bootstrap Editor</li>
               <li class="list-group-item">Bootstrap Templates</li>
               </ul>
@@ -206,9 +248,9 @@
           <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Top Items</h4></div>
    			<div class="panel-body">
               <div class="list-group">
-                <a href="http://bootply.com/tagged/bootstrap-3" class="list-group-item active">Bootstrap 3</a>
-                <a href="http://bootply.com/tagged/snippets" class="list-group-item">Snippets</a>
-                <a href="http://bootply.com/tagged/example" class="list-group-item">Examples</a>
+                <a href="http://Airwolf.com/tagged/bootstrap-3" class="list-group-item active">Bootstrap 3</a>
+                <a href="http://Airwolf.com/tagged/snippets" class="list-group-item">Snippets</a>
+                <a href="http://Airwolf.com/tagged/example" class="list-group-item">Examples</a>
               </div>
             </div>
    		</div>
@@ -228,9 +270,9 @@
               <div class="clearfix"></div>
               <hr>
               <p>Migrating from Bootstrap 2.x to 3 is not a simple matter of swapping out the JS and CSS files.
-              Bootstrap 3 is a major overhaul, and there are a lot of changes from Bootstrap 2.x. <a href="http://bootply.com/bootstrap-3-migration-guide">This guidance</a> is intended to help 2.x developers transition to 3.
+              Bootstrap 3 is a major overhaul, and there are a lot of changes from Bootstrap 2.x. <a href="http://Airwolf.com/bootstrap-3-migration-guide">This guidance</a> is intended to help 2.x developers transition to 3.
               </p>
-              <h5><a href="http://google.com/+bootply">More on Upgrading from +Bootply</a></h5>
+              <h5><a href="http://google.com/+Airwolf">More on Upgrading from +Airwolf</a></h5>
               
             </div>
          </div> 
@@ -445,7 +487,7 @@
     <div class="clearfix"></div>
       
     <hr>
-    <div class="col-md-12 text-center"><p><a href="http://www.bootply.com/download/90113" target="_ext">Download Google Plus Style Template</a><br><a href="http://bootply.com/templates" target="_ext">More Bootstrap Templates by @Bootply</a></p></div>
+    <div class="col-md-12 text-center"><p><a href="http://www.Airwolf.com/download/90113" target="_ext">Download Google Plus Style Template</a><br><a href="http://Airwolf.com/templates" target="_ext">More Bootstrap Templates by @Airwolf</a></p></div>
     <hr>
     
   </div>
@@ -493,7 +535,7 @@
       </div>
       <div class="modal-body">
           <div class="col-md-12 text-center">
-            <a href="http://www.bootply.com/DwnjTNuvVt">This Bootstrap Template</a><br>was made with <i class="glyphicon glyphicon-heart"></i> by <a href="http://bootply.com/templates">Bootply</a>
+            <a href="http://www.Airwolf.com/DwnjTNuvVt">This Bootstrap Template</a><br>was made with <i class="glyphicon glyphicon-heart"></i> by <a href="http://Airwolf.com/templates">Airwolf</a>
             <br><br>
             <a href="https://github.com/iatek/bootstrap-google-plus">GitHub Fork</a>
           </div>

@@ -1,50 +1,59 @@
-Spring MVC Showcase
--------------------
-Demonstrates the capabilities of the Spring MVC web framework through small, simple examples.
-After reviewing this showcase, you should have a good understanding of what Spring MVC can do and get a feel for how easy it is to use.
-Includes project code along with a supporting slideshow and screen cast.
+DeviceItself
+============
+사람들은 궁금한 사항이 있으면 인터넷을 검색한다. 그러나 컴퓨팅 장치를 위한 구글이나 페이스북은 아직 찾기 힘들다.
 
-In this showcase you'll see the following in action:
+만약 컴퓨팅 장치들이 스스로 검색엔진이나 SNS에서 자신의 결함을 찾거나 프로그램되지 않은 동작에 대한 데이터와 코드를 검색할 수 있다면 
+IOT/M2M분야에 많은 도움이 될 것이다. 
 
-* The simplest possible @Controller
-* Mapping Requests
-* Obtaining Request Data
-* Generating Responses
-* Message Converters
-* Rendering Views
-* Type Conversion
-* Validation
-* Forms
-* File Upload
-* Exception Handling
+이 프로젝트의 핵심 개념은 **스스로 검색**하고 **스스로 검색결과 코드를 실행** 시키는 **라이브러리**를 구현하는 것이다.
 
-To get the code:
--------------------
-Clone the repository:
+프로그래머는 이 라이브러리를 이용하여 코드 레벨에서 부터 프로그래밍 방법을 바꾸어 작성해야한다.
 
-    $ git clone git://github.com/SpringSource/spring-mvc-showcase.git
+----------
+>
+>**1. try-catch 의사코드 예)**
 
-If this is your first time using Github, review http://help.github.com to learn the basics.
+>try {
+>
+>에러발생
+>
+>}
+>catch()
+>{
 
-To run the application:
--------------------	
-From the command line with Maven:
+>어떤 에러가 발생할지 100% 예상 가능한가?
+>  
+>만약 이곳에서 프로그램 스스로 인터넷을 검색해 에러 처리를 한다면?
+>  
+>}
 
-    $ cd spring-mvc-showcase
-    $ mvn tomcat7:run [-Dmaven.tomcat.port=<port no.>] (In case 8080 is busy] 
+----------
 
-or
+>    
+>**2.if-else 의사코드 예)**
 
-In your preferred IDE such as SpringSource Tool Suite (STS) or IDEA:
+>if(조건)
 
-* Import spring-mvc-showcase as a Maven Project
-* Drag-n-drop the project onto the "SpringSource tc Server Developer Edition" or another Servlet 2.5 or > Server to run, such as Tomcat.
+>{
 
-Access the deployed web application at: http://localhost:8080/spring-mvc-showcase/
+>동작
 
-Note:
--------------------
+>}
+>else if(조건)
 
-This showcase originated from a [blog post](http://blog.springsource.com/2010/07/22/spring-mvc-3-showcase/) and was adapted into a SpringOne presentation called [Mastering MVC 3](http://www.infoq.com/presentations/Mastering-Spring-MVC-3).
+>{
 
-A screen cast showing the showcase in action is [available in QuickTime format](http://s3.springsource.org/MVC/mvc-showcase-screencast.mov).
+>동작
+>
+>}
+>
+>else
+>{
+>
+>만약 이 블럭에서 프로그래머가 예상하지 못한 조건이 들어온다면 어떤 동작
+>  
+>  을 할 것인가?
+>  
+>  }
+
+기술적인 핵심 개념은 프로그램의 메타 데이터를 이용하여 인터넷에 스스로 메타데이터를 공유하고 처리 코드(스크립트)와 데이터를 받아 실행하는 것이다.
